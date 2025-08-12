@@ -2,6 +2,15 @@ let userScore = 0;
 let compScore = 0;
 let roundsPlayed = 0;
 
+const images = document.querySelectorAll("img");
+const playerScoreH1 = document.querySelector("#player-score");
+const computerScoreH1 = document.querySelector("#computer-score");
+const gameResultH2 = document.querySelector(".game-result h2");
+
+for(let i = 0; i < images.length; i++) {
+    images[i].addEventListener("click", () => playRound(images[i].id, getComputerChoice()));
+}
+
 function getComputerChoice() {
     let computerChoice = Math.floor(Math.random() * 3) + 1;
     
@@ -20,51 +29,36 @@ function getComputerChoice() {
     }
 }
 
-function getUserChoice() {
-    let userChoice = prompt("Enter your choice. || Rock || Paper || Scissors");
-    return userChoice;
-}
-
 function playRound(userChoice, compChoice) {
-    userChoice = userChoice.toLowerCase();
-
     if (userChoice === compChoice) {
-        console.log("Tie");
-        playGame();
+        updateScore("tie");
     } else if (userChoice === "rock" && compChoice === "scissors") {
-        userScore++;
-        console.log("User wins!");
-        console.log(`User: |${userScore}| Computer: |${compScore}|`);
-        playGame();
+        updateScore("user")
     } else if (userChoice === "paper" && compChoice === "rock") {
-        userScore++;
-        console.log("User wins!");
-        console.log(`User: |${userScore}| Computer: |${compScore}|`);
-        playGame();
+        updateScore("user")
     } else if (userChoice === "scissors" && compChoice === "paper") {
-        userScore++;
-        console.log("User wins!");
-        console.log(`User: |${userScore}| Computer: |${compScore}|`);
-        playGame();
+        updateScore("user")
     } else {
+        updateScore("computer")
+    }
+}
+
+function updateScore(winner) {
+    if (userScore >= 5) {
+        gameResultH2.textContent = "PLAYER has 5 points! Winning the game!"
+    } else if (compScore >= 5) {
+        gameResultH2.textContent = "COMPUTER has 5 points! Winning the game!"
+    } else if (winner === "user") {
+        userScore++;
+        gameResultH2.textContent = "PLAYER has won!"
+        playerScoreH1.textContent = userScore;
+    } else if (winner === "computer") {
         compScore++;
-        console.log("Computer wins!");
-        console.log(`User: |${userScore}| Computer: |${compScore}|`);
-        playGame();
+        gameResultH2.textContent = "COMPUTER has won!"
+        computerScoreH1.textContent = compScore;
+    } else {
+        gameResultH2.textContent = "TIE!"
     }
 }
-
-function playGame() {
-    if (roundsPlayed <= 5) {
-        const userSelection = getUserChoice();
-        const computerSelection = getComputerChoice();
-        roundsPlayed++;
-        playRound(userSelection, computerSelection);
-    }
-}
-
-playGame();
-
-
 
 

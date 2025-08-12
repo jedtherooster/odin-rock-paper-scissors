@@ -4,9 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body style="background-color: black;">
-    
+<body>
+    <div class="container">
+        <div class="score">
+            <h1><span id="player-score">0</span> : <span id="computer-score">0</span></h1>
+        </div>
+        <div class="player-choices">
+            <img src="https://static.vecteezy.com/system/resources/previews/061/620/972/non_2x/black-irregular-rock-silhouette-icon-vector.jpg" alt="rock" draggable="false" id="rock">
+            <img src="https://static.vecteezy.com/system/resources/previews/024/248/766/non_2x/black-document-icon-paper-icon-file-icon-on-white-background-free-vector.jpg" alt="paper" draggable="false" id="paper">
+            <img src="https://static.vecteezy.com/system/resources/previews/004/897/463/non_2x/scissors-glyph-icon-free-vector.jpg" alt="scissors" draggable="false" id="scissors">
+        </div>
+        <div class="game-result">
+            <h2>ROCK | PAPER | SCISSORS</h2>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
